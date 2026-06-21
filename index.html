@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Musique à Pechabou — Association musicale</title>
+<meta name="description" content="Musique à Pechabou : concerts, rencontres et moments partagés pour faire vivre la musique au cœur du village.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Work+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16142B;          /* nuit / salle de concert */
+    --ink-panel:#211D45;    /* panneau sombre */
+    --ink-line:rgba(245,239,227,.14);
+    --gold:#E6A434;         /* lumière de scène, cuivres */
+    --gold-soft:#F0C46B;
+    --cream:#F5EFE3;        /* parchemin, plein jour */
+    --cream-2:#EFE7D6;
+    --rose:#D98C6A;         /* accent secondaire, parcimonie */
+    --text-dark:#1E1B33;
+    --text-dark-soft:#52506A;
+    --text-light:#F5EFE3;
+    --text-light-soft:rgba(245,239,227,.66);
+    --maxw:1120px;
+    --r:14px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;
+    font-family:"Work Sans",system-ui,sans-serif;
+    color:var(--text-dark);
+    background:var(--cream);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- éléments de texte récurrents ---------- */
+  .eyebrow{
+    font-family:"DM Mono",monospace;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    margin:0 0 18px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.05;margin:0}
+  .display{font-size:clamp(2.7rem,8vw,5.4rem);letter-spacing:-.01em}
+  .h2{font-size:clamp(2rem,4.4vw,3.1rem);letter-spacing:-.01em}
+  p{margin:0 0 1.1em}
+  .lead{font-size:1.12rem}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:"Work Sans",sans-serif;font-weight:600;font-size:.95rem;
+    padding:.85em 1.4em;border-radius:100px;text-decoration:none;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .btn-gold{background:var(--gold);color:var(--ink)}
+  .btn-gold:hover{transform:translateY(-2px);background:var(--gold-soft)}
+  .btn-ghost{border-color:var(--ink-line);color:var(--text-light)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-dark{background:var(--ink);color:var(--cream)}
+  .btn-dark:hover{transform:translateY(-2px);background:var(--ink-panel)}
+
+  a:focus-visible,.btn:focus-visible,button:focus-visible{
+    outline:2px solid var(--gold);outline-offset:3px;border-radius:6px;
+  }
+
+  /* ---------- header ---------- */
+  .site-head{
+    position:sticky;top:0;z-index:50;
+    background:rgba(22,20,43,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--ink-line);
+  }
+  .site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text-light)}
+  .brand .mark{
+    width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:grid;place-items:center;color:var(--gold);font-family:"Fraunces",serif;font-size:1.05rem;
+    flex:0 0 auto;
+  }
+  .brand b{font-family:"Fraunces",serif;font-weight:600;font-size:1.08rem;letter-spacing:.01em}
+  .nav{display:flex;align-items:center;gap:30px}
+  .nav a{color:var(--text-light-soft);text-decoration:none;font-size:.92rem;transition:color .18s}
+  .nav a:hover{color:var(--text-light)}
+  .nav .btn{padding:.6em 1.1em}
+  .menu-btn{display:none;background:none;border:0;color:var(--text-light);font-size:1.6rem;line-height:1;cursor:pointer;padding:6px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;background:var(--ink);color:var(--text-light);overflow:hidden}
+  .hero .wrap{position:relative;z-index:2;padding-top:96px;padding-bottom:104px}
+  .glow{
+    position:absolute;z-index:1;left:50%;top:8%;width:min(820px,120vw);height:560px;
+    transform:translateX(-50%);
+    background:radial-gradient(50% 50% at 50% 50%, rgba(230,164,52,.34), rgba(230,164,52,0) 70%);
+    filter:blur(8px);pointer-events:none;
+    animation:pulse 9s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
+  @media (prefers-reduced-motion:reduce){.glow{animation:none}}
+  /* portée musicale en filigrane */
+  .staff{position:absolute;inset:auto 0 0;height:160px;z-index:1;opacity:.5;
+    background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--ink-line) 27px 28px);
+    -webkit-mask:linear-gradient(to top,#000,transparent);mask:linear-gradient(to top,#000,transparent);}
+  .hero .eyebrow{color:var(--gold)}
+  .hero .display{max-width:14ch}
+  .hero .display em{font-style:italic;color:var(--gold-soft);font-weight:400}
+  .hero-sub{max-width:50ch;color:var(--text-light-soft);font-size:1.18rem;margin-top:24px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .next-chip{
+    margin-top:46px;display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;
+    font-family:"DM Mono",monospace;font-size:.82rem;color:var(--text-light-soft);
+    border-top:1px solid var(--ink-line);padding-top:22px;
+  }
+  .next-chip b{color:var(--gold);font-weight:500}
+
+  /* ---------- sections claires ---------- */
+  .light{background:var(--cream);color:var(--text-dark)}
+  .light .eyebrow{color:var(--rose)}
+  section{padding:96px 0}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .about-grid .lead{color:var(--text-dark-soft)}
+  .doing{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+  .doing li{padding:22px 0;border-top:1px solid rgba(30,27,51,.12);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline}
+  .doing li:last-child{border-bottom:1px solid rgba(30,27,51,.12)}
+  .doing .k{font-family:"DM Mono",monospace;color:var(--rose);font-size:.8rem}
+  .doing h3{font-size:1.18rem;margin:0 0 4px}
+  .doing p{margin:0;color:var(--text-dark-soft);font-size:.98rem}
+
+  /* ---------- agenda (sombre, esprit programme) ---------- */
+  .agenda{position:relative;background:var(--ink);color:var(--text-light);overflow:hidden}
+  .agenda::before{content:"";position:absolute;inset:0;z-index:0;opacity:.45;
+    background:repeating-linear-gradient(to bottom,transparent 0 31px,var(--ink-line) 31px 32px);
+    -webkit-mask:radial-gradient(120% 90% at 50% 0,#000,transparent 75%);mask:radial-gradient(120% 90% at 50% 0,#000,transparent 75%);}
+  .agenda .wrap{position:relative;z-index:1}
+  .agenda .eyebrow{color:var(--gold)}
+  .agenda-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+  .agenda-note{font-family:"DM Mono",monospace;font-size:.78rem;color:var(--text-light-soft);max-width:32ch}
+  .programme{display:grid;gap:18px}
+  .event{
+    background:var(--ink-panel);border:1px solid var(--ink-line);border-radius:var(--r);
+    padding:30px 30px 30px 34px;position:relative;overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .event::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
+  .event:hover{transform:translateY(-3px);border-color:rgba(230,164,52,.4)}
+  .event h3{font-size:1.55rem;margin:6px 0 20px;max-width:30ch}
+  .event h3 em{font-style:italic;font-weight:400;color:var(--gold-soft)}
+  .ev-date{font-family:"DM Mono",monospace;color:var(--gold);font-size:.86rem;letter-spacing:.02em}
+  .ev-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 32px;margin-top:6px}
+  .ev-meta .field .label{
+    font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--text-light-soft);margin-bottom:5px;display:block;
+  }
+  .ev-meta .field .val{font-size:.98rem;color:var(--text-light)}
+  .ev-meta .field a{color:var(--gold-soft);text-decoration:none}
+  .ev-meta .field a:hover{text-decoration:underline}
+
+  /* ---------- rejoindre ---------- */
+  .join .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+  .join .h2{margin-bottom:18px}
+  .join p{color:var(--text-dark-soft)}
+  .join-card{
+    background:var(--cream-2);border:1px solid rgba(30,27,51,.1);border-radius:var(--r);
+    padding:34px;
+  }
+  .join-card h3{font-size:1.3rem;margin-bottom:14px}
+  .join-card ul{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:12px}
+  .join-card li{display:flex;gap:12px;align-items:flex-start;color:var(--text-dark-soft);font-size:.98rem}
+  .join-card li::before{content:"♪";color:var(--rose);font-size:1.05rem;line-height:1.4}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--ink);color:var(--text-light);text-align:center}
+  .contact .eyebrow{color:var(--gold);justify-content:center}
+  .contact .h2{margin-bottom:10px}
+  .contact .sub{color:var(--text-light-soft);max-width:46ch;margin:0 auto 34px}
+  .mail{
+    display:inline-block;font-family:"Fraunces",serif;font-weight:600;
+    font-size:clamp(1.5rem,4.5vw,2.6rem);color:var(--gold-soft);text-decoration:none;
+    border-bottom:2px solid transparent;transition:border-color .2s ease;letter-spacing:-.01em;
+    word-break:break-word;
+  }
+  .mail:hover{border-color:var(--gold)}
+  .contact .small{margin-top:30px;font-family:"DM Mono",monospace;font-size:.76rem;letter-spacing:.12em;color:var(--text-light-soft);text-transform:uppercase}
+
+  /* ---------- footer ---------- */
+  footer{background:#100E22;color:var(--text-light-soft);padding:40px 0}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .brand b{color:var(--text-light)}
+  footer .f-mail{color:var(--text-light-soft);text-decoration:none;font-family:"DM Mono",monospace;font-size:.82rem}
+  footer .f-mail:hover{color:var(--gold)}
+
+  /* ---------- révélation au scroll ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    .nav{
+      position:fixed;inset:68px 0 auto;background:var(--ink);
+      flex-direction:column;align-items:stretch;gap:0;
+      padding:10px 24px 24px;border-bottom:1px solid var(--ink-line);
+      transform:translateY(-130%);transition:transform .3s ease;
+    }
+    .nav.open{transform:none}
+    .nav a{padding:14px 0;border-bottom:1px solid var(--ink-line)}
+    .nav .btn{margin-top:16px;justify-content:center}
+    .menu-btn{display:block}
+    .about-grid,.join .wrap{grid-template-columns:1fr;gap:36px}
+    .ev-meta{grid-template-columns:1fr}
+    section{padding:72px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="mark">M</span>
+      <b>Musique à&nbsp;Pechabou</b>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#asso">L'association</a>
+      <a href="#agenda">À l'affiche</a>
+      <a href="#rejoindre">Nous rejoindre</a>
+      <a class="btn btn-gold" href="mailto:musiqueapechabou@free.fr">Nous écrire</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="glow"></div>
+    <div class="staff"></div>
+    <div class="wrap">
+      <p class="eyebrow">Association musicale · Pechabou</p>
+      <h1 class="display">La musique<br>vivante, <em>au cœur<br>du village</em></h1>
+      <p class="hero-sub">Concerts, rencontres et moments partagés — l'association fait résonner la musique à Pechabou, pour toutes et tous, tout au long de l'année.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#agenda">Voir les concerts</a>
+        <a class="btn btn-ghost" href="#asso">Découvrir l'association</a>
+      </div>
+      <div class="next-chip">
+        <span>Prochain rendez-vous</span>
+        <b>Sam. 18 avril 2026 — 20h30</b>
+        <span>· Salle des fêtes, Pechabou</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- L'ASSOCIATION -->
+  <section class="light" id="asso">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">L'association</p>
+        <h2 class="h2">La musique, tout près de chez vous</h2>
+        <p class="lead">Musique à Pechabou rassemble musiciens amateurs et professionnels, mélomanes et curieux autour d'une même envie : partager des moments de musique vivante.</p>
+        <p style="color:var(--text-dark-soft)">Au fil de l'année, l'association organise des concerts, des auditions et des rencontres dans le village et ses environs. Une programmation ouverte, conviviale et accessible, portée par des bénévoles passionnés.</p>
+      </div>
+      <ul class="doing reveal">
+        <li><span class="k">01</span><div><h3>Concerts</h3><p>Des rendez-vous réguliers, du classique au jazz, en passant par les musiques du monde.</p></div></li>
+        <li><span class="k">02</span><div><h3>Rencontres &amp; ateliers</h3><p>Des temps d'échange entre artistes, habitants et amateurs de tous niveaux.</p></div></li>
+        <li><span class="k">03</span><div><h3>Transmission</h3><p>Faire découvrir et aimer la musique aux plus jeunes comme aux plus grands.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AGENDA / À L'AFFICHE -->
+  <section class="agenda" id="agenda">
+    <div class="wrap">
+      <div class="agenda-head reveal">
+        <div>
+          <p class="eyebrow">À l'affiche</p>
+          <h2 class="h2">Les prochains rendez-vous</h2>
+        </div>
+        <p class="agenda-note">Exemples à remplacer par votre propre programmation. Chaque date précise l'heure, le lieu, la thématique et le contact.</p>
+      </div>
+
+      <div class="programme">
+
+        <article class="event reveal">
+          <p class="ev-date">Samedi 18 avril 2026 — 20h30</p>
+          <h3>Quatuor à cordes — <em>de Mozart à Piazzolla</em></h3>
+          <div class="ev-meta">
+            <div class="field"><span class="label">Date &amp; heure</span><span class="val">Sam. 18 avril 2026, 20h30</span></div>
+            <div class="field"><span class="label">Lieu</span><span class="val">Salle des fêtes, Pechabou</span></div>
+            <div class="field"><span class="label">Thématique</span><span class="val">Musique classique &amp; tango</span></div>
+            <div class="field"><span class="label">Contact</span><span class="val"><a href="mailto:musiqueapechabou@free.fr">musiqueapechabou@free.fr</a></span></div>
+          </div>
+        </article>
+
+        <article class="event reveal">
+          <p class="ev-date">Vendredi 22 mai 2026 — 21h00</p>
+          <h3>Soirée jazz — <em>standards &amp; improvisations</em></h3>
+          <div class="ev-meta">
+            <div class="field"><span class="label">Date &amp; heure</span><span class="val">Ven. 22 mai 2026, 21h00</span></div>
+            <div class="field"><span class="label">Lieu</span><span class="val">Place de l'Église, Pechabou</span></div>
+            <div class="field"><span class="label">Thématique</span><span class="val">Jazz &amp; musiques improvisées</span></div>
+            <div class="field"><span class="label">Contact</span><span class="val"><a href="mailto:musiqueapechabou@free.fr">musiqueapechabou@free.fr</a></span></div>
+          </div>
+        </article>
+
+        <article class="event reveal">
+          <p class="ev-date">Dimanche 14 juin 2026 — 17h00</p>
+          <h3>Audition des élèves — <em>la relève en concert</em></h3>
+          <div class="ev-meta">
+            <div class="field"><span class="label">Date &amp; heure</span><span class="val">Dim. 14 juin 2026, 17h00</span></div>
+            <div class="field"><span class="label">Lieu</span><span class="val">Salle des fêtes, Pechabou</span></div>
+            <div class="field"><span class="label">Thématique</span><span class="val">Jeunes talents &amp; chœur du village</span></div>
+            <div class="field"><span class="label">Contact</span><span class="val"><a href="mailto:musiqueapechabou@free.fr">musiqueapechabou@free.fr</a></span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NOUS REJOINDRE -->
+  <section class="light join" id="rejoindre">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Nous rejoindre</p>
+        <h2 class="h2">Envie de faire vivre la musique avec nous&nbsp;?</h2>
+        <p>Que vous soyez musicien·ne, bénévole ou simple amateur de belles soirées, il y a une place pour vous. Adhérer à l'association, c'est soutenir une programmation locale et conviviale, et participer à la vie culturelle du village.</p>
+        <a class="btn btn-dark" href="mailto:musiqueapechabou@free.fr?subject=Je%20souhaite%20rejoindre%20l'association">Adhérer ou nous aider</a>
+      </div>
+      <div class="join-card reveal">
+        <h3>Comment participer</h3>
+        <ul>
+          <li>Devenir adhérent·e et soutenir nos concerts</li>
+          <li>Donner un coup de main bénévole lors des événements</li>
+          <li>Proposer un projet ou jouer lors d'une scène ouverte</li>
+          <li>Suivre l'actualité et partager nos rendez-vous</li>
+        </ul>
+        <a class="btn btn-gold" href="mailto:musiqueapechabou@free.fr">Écrire à l'association</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2 class="h2">Écrivons-nous</h2>
+      <p class="sub">Une question, une envie de participer ou de programmer un concert&nbsp;? Un seul message suffit.</p>
+      <a class="mail" href="mailto:musiqueapechabou@free.fr">musiqueapechabou@free.fr</a>
+      <p class="small">Association loi 1901 · Pechabou (31)</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="mark">M</span>
+      <b>Musique à Pechabou</b>
+    </a>
+    <a class="f-mail" href="mailto:musiqueapechabou@free.fr">musiqueapechabou@free.fr</a>
+    <span style="font-family:'DM Mono',monospace;font-size:.76rem">© 2026 · Tous droits réservés</span>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  const btn = document.getElementById('menuBtn');
+  const nav = document.getElementById('nav');
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '✕' : '☰';
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); btn.textContent = '☰'; btn.setAttribute('aria-expanded', false);
+  }));
+
+  // révélation au scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, { threshold:.14 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
