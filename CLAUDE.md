@@ -60,9 +60,13 @@ La puce « Prochain rendez-vous » du hero de `index.html` (`.next-chip`) doit �
 
 ## Mettre à jour un professeur
 
-Chaque professeur a sa page dans `professeurs/`. La photo est pour l'instant un monogramme (`.prof-portrait > span`) : le remplacer par une `<img>` quand une photo sera disponible. Les cartes des professeurs apparaissent aussi sur `index.html` et `professeurs.html` — garder les trois endroits cohérents.
+Chaque professeur a sa page dans `professeurs/`. Les photos sont dans `images/` (référencées en `../images/{nom}.jpg` depuis `professeurs/`) et affichées dans `.prof-portrait` via une `<img>` recadrée en `object-fit:cover` (format 4/5). Samuel, Mira et Sam ont leur vraie photo ; Eddy garde un monogramme (`.prof-portrait > span`) faute de photo — le remplacer par une `<img>` le jour venu.
 
-La biographie d'Eddy est à compléter (voir le TODO dans `professeurs/eddy.html`).
+Le lien vers un site/écoute perso est un bloc `.field` dans `.prof-facts` (ex. MySpace pour Samuel, vidéo YouTube pour Mira), avec `target="_blank" rel="noopener"`.
+
+Les cartes des professeurs (monogrammes) apparaissent aussi sur `index.html` et `professeurs.html` — garder les trois endroits cohérents.
+
+Les biographies de Samuel, Mira et Sam reprennent le contenu de l'ancien site Wix. La biographie d'Eddy est inventée (Eddy n'existait pas sur l'ancien site) — à compléter avec ses vraies infos le moment venu.
 
 ## Contenus à vérifier à chaque rentrée
 
