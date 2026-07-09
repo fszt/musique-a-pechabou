@@ -4,7 +4,7 @@ Ce fichier fournit des instructions à Claude Code (claude.ai/code) pour travail
 
 ## Présentation du projet
 
-Site web statique pour « Musique à Péchabou », une association musicale française (loi 1901) basée à Pechabou (31). Activité principale : cours de musique (piano, guitare classique et flamenco, guitare électrique, basse, batterie, éveil musical). Ponctuellement : concerts de piano, Téléthon, fête de fin d'année.
+Site web statique pour « Musique à Péchabou », une association musicale française (loi 1901) basée à Pechabou (31). Activité principale : cours de musique (piano, guitare acoustique, guitare électrique, basse, batterie, éveil musical). Ponctuellement : concerts de piano, Téléthon, fête de fin d'année.
 
 Le site respecte l'état de l'art d'un site web statique. Il est entièrement autonome :
 
