@@ -24,7 +24,7 @@ Site multi-pages. Chaque page est un fichier HTML complet qui partage `styles.cs
 
 | Fichier | Page |
 |---|---|
-| `index.html` | Accueil — hero, aperçu des cours, des professeurs et de l'association |
+| `index.html` | Accueil — hero + puce « prochain rendez-vous », aperçus compacts (cours, professeurs, association) qui renvoient vers les pages détaillées |
 | `association.html` | L'association — projet, valeurs, vie de l'association |
 | `cours.html` | Les cours — disciplines, jours, infos pratiques |
 | `professeurs.html` | Les professeurs — vue d'ensemble, liens vers les portraits |
@@ -37,6 +37,20 @@ Site multi-pages. Chaque page est un fichier HTML complet qui partage `styles.cs
 - **Polices** — chargées depuis Google Fonts (Fraunces, Work Sans, DM Mono). Aucun asset local.
 - **Header/footer** — dupliqués dans chaque page : toute modification de la navigation ou du footer doit être répercutée dans **tous** les fichiers HTML. Le lien de la page courante porte `aria-current="page"`.
 - **Chemins relatifs** — les pages du dossier `professeurs/` référencent les ressources avec `../` (`../styles.css`, `../main.js`, `../index.html`, etc.).
+
+## Sources de vérité (limiter la duplication)
+
+Chaque information volatile a **une page canonique** ; les autres pages n'en gardent qu'un écho minimal (listé ci-dessous) ou un simple lien. Ne pas réintroduire de détail dupliqué ailleurs.
+
+| Information | Page canonique | Échos volontaires (à synchroniser) |
+|---|---|---|
+| Jours de cours, formats, descriptions des cours | `cours.html` (cartes avec ancres `#piano`, `#guitare-acoustique`, `#guitare-electrique-basse`, `#batterie`, `#eveil-musical`) | Champ « Jours de cours » des fiches profs |
+| Dates des évènements | `affiche.html` | `.next-chip` de `index.html` ; date du forum dans l'étape 01 d'`adhesion.html` |
+| Tarifs et modalités d'inscription | `adhesion.html` | aucun |
+| Biographies et teasers des professeurs | pages `professeurs/*.html` (bios) et `professeurs.html` (teasers) | Cartes d'`index.html` : nom + rôle seulement, sans teaser |
+| Projet et vie de l'association | `association.html` | Une phrase de résumé sur `index.html` |
+
+L'accueil ne mentionne **ni jours, ni dates précises (hors puce), ni descriptions** : sa section cours pointe vers les ancres de `cours.html`.
 
 ## Design tokens (propriétés personnalisées CSS)
 
@@ -56,7 +70,7 @@ Les évènements sont dans `affiche.html` : des éléments `<article class="even
 - `h3` — le titre de l'évènement (accepte `<em>` pour un accent en italique)
 - `.ev-meta` — une grille à 2 colonnes de blocs `.field` avec `.label` et `.val`
 
-La puce « Prochain rendez-vous » du hero de `index.html` (`.next-chip`) doit être mise à jour manuellement pour correspondre au prochain évènement à venir.
+La puce « Prochain rendez-vous » du hero de `index.html` (`.next-chip`) doit être mise à jour manuellement pour correspondre au prochain évènement à venir. La date du forum des associations apparaît aussi dans l'étape 01 d'`adhesion.html`.
 
 ## Mettre à jour un professeur
 
@@ -64,15 +78,15 @@ Chaque professeur a sa page dans `professeurs/`. Les photos sont dans `images/` 
 
 Le lien vers un site/écoute perso est un bloc `.field` dans `.prof-facts` (ex. MySpace pour Samuel, vidéo YouTube pour Mira), avec `target="_blank" rel="noopener"`.
 
-Les cartes des professeurs (monogrammes) apparaissent aussi sur `index.html` et `professeurs.html` — garder les trois endroits cohérents.
+Les cartes des professeurs (monogrammes) apparaissent aussi sur `professeurs.html` (avec teaser) et sur `index.html` (nom + rôle seulement) — garder noms et rôles cohérents.
 
 Les biographies de Samuel, Mira et Sam reprennent le contenu de l'ancien site Wix. La biographie d'Eddy est inventée (Eddy n'existait pas sur l'ancien site) — à compléter avec ses vraies infos le moment venu.
 
 ## Contenus à vérifier à chaque rentrée
 
 - Tarifs dans `adhesion.html` (repris de l'ancien site, marqués « à confirmer »)
-- Date du forum des associations (`affiche.html`, `index.html`)
-- Jours de cours dans `cours.html` et les pages professeurs
+- Date du forum des associations (`affiche.html`, `.next-chip` d'`index.html`, étape 01 d'`adhesion.html`)
+- Jours de cours dans `cours.html` et leur écho sur les fiches professeurs
 
 ## Langue du contenu
 

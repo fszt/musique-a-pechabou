@@ -163,6 +163,10 @@ section{padding:96px 0}
 .doing .k{font-family:"DM Mono",monospace;color:var(--rose);font-size:.8rem}
 .doing h3{font-size:1.18rem;margin:0 0 4px}
 .doing p{margin:0;color:var(--text-dark-soft);font-size:.98rem}
+.doing h3 a{color:inherit;text-decoration:none;transition:color .18s}
+.doing h3 a:hover{color:var(--rose)}
+.doing p a{color:var(--rose);text-decoration:none}
+.doing p a:hover{text-decoration:underline}
 
 /* ---------- cartes de cours ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
@@ -177,6 +181,9 @@ section{padding:96px 0}
 .card p{color:var(--text-dark-soft);font-size:.95rem;margin:0 0 18px}
 .card-link{margin-top:auto;font-weight:600;font-size:.92rem;text-decoration:none;color:var(--text-dark)}
 .card-link:hover{color:var(--rose)}
+/* cible d'une ancre (ex. cours.html#piano) : compenser le header collant et signaler la carte */
+.card[id]{scroll-margin-top:92px}
+.card:target{border-color:var(--rose)}
 
 /* ---------- professeurs : cartes ---------- */
 .prof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
