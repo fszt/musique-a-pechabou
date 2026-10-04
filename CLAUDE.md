@@ -28,7 +28,7 @@ Site multi-pages. Chaque page est un fichier HTML complet qui partage `styles.cs
 | `association.html` | L'association — projet, valeurs, vie de l'association |
 | `cours.html` | Les cours — disciplines, jours, infos pratiques |
 | `professeurs.html` | Les professeurs — vue d'ensemble, liens vers les portraits |
-| `professeurs/{samuel,eddy,caroline,sam}.html` | Une page portrait par professeur (`caroline.html` : professeure de piano, pas encore de vraie photo) |
+| `professeurs/{samuel,eddy,caroline,sam}.html` | Une page portrait par professeur (`caroline.html` : professeure de piano) |
 | `affiche.html` | À l'affiche — agenda des évènements |
 | `adhesion.html` | Adhésion — inscriptions, tarifs, contact |
 
@@ -74,7 +74,7 @@ La puce « Prochain rendez-vous » du hero de `index.html` (`.next-chip`) doit �
 
 ## Mettre à jour un professeur
 
-Chaque professeur a sa page dans `professeurs/`. Les photos sont dans `images/` (référencées en `../images/{nom}.jpg` depuis `professeurs/`) et affichées dans `.prof-portrait` via une `<img>` recadrée en `object-fit:cover` (format 4/5). Samuel et Sam ont leur vraie photo ; Eddy et Caroline gardent un monogramme (`.prof-portrait > span`) faute de photo — à remplacer par une `<img>` le jour venu.
+Chaque professeur a sa page dans `professeurs/`. Les photos sont dans `images/` (référencées en `../images/{nom}.jpg` depuis `professeurs/`) et affichées dans `.prof-portrait` via une `<img>` recadrée en `object-fit:cover` (format 4/5). Samuel, Sam et Caroline ont leur vraie photo ; Eddy garde un monogramme (`.prof-portrait > span`) faute de photo — à remplacer par une `<img>` le jour venu.
 
 Le lien vers un site/écoute perso est un bloc `.field` dans `.prof-facts` (ex. MySpace pour Samuel), avec `target="_blank" rel="noopener"`.
 
@@ -82,7 +82,7 @@ Les cartes des professeurs (monogrammes) apparaissent aussi sur `professeurs.htm
 
 Les biographies de Samuel et Sam reprennent le contenu de l'ancien site Wix. La biographie d'Eddy est inventée (Eddy n'existait pas sur l'ancien site) — à compléter avec ses vraies infos le moment venu. La biographie de Caroline a été fournie directement par l'association.
 
-**Poste de piano** — Mira (ancienne professeure de piano) a quitté l'association pour un poste au conservatoire de Castelnaudary ; elle a été remplacée par Caroline. Sa page `professeurs/caroline.html` n'a pas encore de vraie photo (monogramme `C`) — à remplacer par une `<img>` dès qu'une photo sera disponible.
+**Poste de piano** — Mira (ancienne professeure de piano) a quitté l'association pour un poste au conservatoire de Castelnaudary ; elle a été remplacée par Caroline.
 
 ## Contenus à vérifier à chaque rentrée
 
