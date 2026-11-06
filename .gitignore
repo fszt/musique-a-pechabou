@@ -1,0 +1,8 @@
+# Réglages personnels de Claude Code
+.claude/settings.local.json
+
+# Configuration de l'IDE (WebStorm)
+.idea/
+
+# Fichiers système macOS
+.DS_Store

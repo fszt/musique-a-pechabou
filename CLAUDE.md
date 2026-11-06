@@ -18,6 +18,10 @@ Pour prévisualiser le site, ouvrir `index.html` directement dans un navigateur 
 python3 -m http.server 8080
 ```
 
+## Mise en ligne
+
+Le site est publié par **GitHub Pages** depuis la branche `main` (racine du dépôt) : https://fszt.github.io/musique-a-pechabou/. **Tout push sur `main` met le site en ligne** en une minute environ — vérifier le rendu localement avant de pousser. Pages fonctionne en mode « legacy » (Jekyll) : les fichiers et dossiers commençant par `_` ou `.` ne sont pas publiés, ni ceux listés dans `exclude` de `_config.yml` (dont ce CLAUDE.md).
+
 ## Architecture
 
 Site multi-pages. Chaque page est un fichier HTML complet qui partage `styles.css` et `main.js` :
@@ -33,8 +37,9 @@ Site multi-pages. Chaque page est un fichier HTML complet qui partage `styles.cs
 | `adhesion.html` | Adhésion — inscriptions, tarifs, contact |
 
 - **CSS** — `styles.css`, feuille partagée utilisant des propriétés personnalisées CSS (design tokens définis dans `:root`). Aucun préprocesseur.
-- **JS** — `main.js` : bascule du menu hamburger mobile et apparition au défilement (« scroll-reveal ») via `IntersectionObserver`.
-- **Polices** — chargées depuis Google Fonts (Fraunces, Work Sans, DM Mono). Aucun asset local.
+- **JS** — `main.js` : bascule du menu hamburger mobile, retrait des évènements passés (`data-fin`, voir « Mettre à jour l'agenda ») et apparition au défilement (« scroll-reveal ») via `IntersectionObserver`.
+- **Polices** — chargées depuis Google Fonts (Fraunces, Work Sans, DM Mono), non hébergées localement.
+- **Images** — dossier `images/` (photos des professeurs).
 - **Header/footer** — dupliqués dans chaque page : toute modification de la navigation ou du footer doit être répercutée dans **tous** les fichiers HTML. Le lien de la page courante porte `aria-current="page"`.
 - **Chemins relatifs** — les pages du dossier `professeurs/` référencent les ressources avec `../` (`../styles.css`, `../main.js`, `../index.html`, etc.).
 
@@ -70,7 +75,9 @@ Les évènements sont dans `affiche.html` : des éléments `<article class="even
 - `h3` — le titre de l'évènement (accepte `<em>` pour un accent en italique)
 - `.ev-meta` — une grille à 2 colonnes de blocs `.field` avec `.label` et `.val`
 
-La puce « Prochain rendez-vous » du hero de `index.html` (`.next-chip`) doit être mise à jour manuellement pour correspondre au prochain évènement à venir. La date du forum des associations apparaît aussi dans l'étape 01 d'`adhesion.html`.
+**Retrait automatique** — un évènement daté porte `data-fin="AAAA-MM-JJ"` : `main.js` le retire de la page le lendemain de cette date. Pour une date à confirmer (« Décembre 2026 »), mettre le dernier jour de la période (`2026-12-31`). Sans date (« Au fil de l'année »), ne pas mettre d'attribut. La puce `.next-chip` d'`index.html` porte le même attribut : passé l'évènement, elle disparaît plutôt que d'annoncer une date périmée — à remplacer alors par le rendez-vous suivant.
+
+Après chaque changement de date, synchroniser les échos listés dans « Sources de vérité » (puce de l'accueil et son `data-fin`, étape 01 d'`adhesion.html`).
 
 ## Mettre à jour un professeur
 
@@ -80,14 +87,21 @@ Le lien vers un site/écoute perso est un bloc `.field` dans `.prof-facts` (ex. 
 
 Les cartes des professeurs (monogrammes) apparaissent aussi sur `professeurs.html` (avec teaser) et sur `index.html` (nom + rôle seulement) — garder noms et rôles cohérents.
 
-Les biographies de Samuel et Sam reprennent le contenu de l'ancien site Wix. La biographie d'Eddy est inventée (Eddy n'existait pas sur l'ancien site) — à compléter avec ses vraies infos le moment venu. La biographie de Caroline a été fournie directement par l'association.
+Le bas de chaque fiche (`.prof-nav`) relie les portraits en boucle « ← Précédent / Suivant → », dans l'ordre des cartes : Samuel → Eddy → Caroline → Sam → Samuel. Ajouter, retirer ou renommer un professeur impose de reprendre cette boucle sur les fiches voisines, en plus des cartes, de `cours.html` et de la navigation.
 
-**Poste de piano** — Mira (ancienne professeure de piano) a quitté l'association pour un poste au conservatoire de Castelnaudary ; elle a été remplacée par Caroline.
+Origine des biographies : celle de Samuel a été fournie par lui-même, celle de Caroline par l'association ; celle de Sam reprend l'ancien site Wix ; celle d'Eddy est **inventée** (absent de l'ancien site) — à remplacer par ses vraies infos le moment venu.
+
+## Avant de publier
+
+1. La puce « Prochain rendez-vous » annonce le prochain évènement à venir, avec le bon `data-fin`.
+2. Les échos de « Sources de vérité » touchés par la modification sont synchronisés.
+3. Aperçu local (`python3 -m http.server 8080`) des pages modifiées, y compris en largeur mobile.
+4. Commit en français (`feat: …`, `chore: …`), puis push sur `main` **seulement avec l'accord explicite de l'utilisateur** — le push met le site en ligne.
 
 ## Contenus à vérifier à chaque rentrée
 
 - Tarifs dans `adhesion.html` (repris de l'ancien site, marqués « à confirmer »)
-- Date du forum des associations (`affiche.html`, `.next-chip` d'`index.html`, étape 01 d'`adhesion.html`)
+- Date du forum des associations et ses échos (voir « Sources de vérité »)
 - Jours de cours dans `cours.html` et leur écho sur les fiches professeurs
 
 ## Langue du contenu
